@@ -2,12 +2,11 @@ from time import sleep
 from json import dumps
 from kafka import KafkaProducer
 
-import logging
-logging.basicConfig(level=logging.DEBUG)
+#import logging
+#logging.basicConfig(level=logging.DEBUG)
 
 producer = KafkaProducer(
-    bootstrap_servers=['127.0.0.1:9092'],
-    api_version=(2, 7, 0),
+    bootstrap_servers=['localhost:9092'],
     value_serializer=lambda x: dumps(x).encode('utf-8')
 )
 for j in range(9999):
