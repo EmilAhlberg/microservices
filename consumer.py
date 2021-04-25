@@ -1,9 +1,10 @@
-from kafka import KafkaConsumer
 from json import loads
 from time import sleep
+from kafka import KafkaConsumer
 consumer = KafkaConsumer(
     'topic_test',
-    bootstrap_servers=['localhost:9092'],
+    bootstrap_servers=['0.0.0.0:9092'],
+    api_version=(2,7,0),
     auto_offset_reset='earliest',
     enable_auto_commit=True,
     group_id='my-group-id',

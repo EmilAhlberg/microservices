@@ -43,7 +43,7 @@
             ],
             "portMappings": [
                 {
-                    "containerPort": 9093,
+                    "containerPort": 9092,
                     "hostPort": 9092
                 }
             ],
