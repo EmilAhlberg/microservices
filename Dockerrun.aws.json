@@ -47,7 +47,7 @@
                     "hostPort": 9092
                 }
             ],
-            "dependsOn": "zookeeper",
+            "dependsOn": ["zookeeper"],
             "links": ["zookeeper"]
         },
         {
