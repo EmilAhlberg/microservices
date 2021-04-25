@@ -41,12 +41,6 @@
                     "value": "topic_test:1:1"
                 }
             ],
-            "mountPoints": [
-                {
-                    "containerPath": "/var/run/docker.sock",
-                    "sourceVolume": "VarRunDocker_Sock"
-                }
-            ],
             "portMappings": [
                 {
                     "containerPort": 9093,
@@ -69,13 +63,5 @@
             ]
         }
     ],
-    "family": "",
-    "volumes": [
-        {
-            "host": {
-                "sourcePath": "/var/run/docker.sock"
-            },
-            "name": "VarRunDocker_Sock"
-        }
-    ]
+    "family": ""
 }
