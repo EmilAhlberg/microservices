@@ -7,6 +7,14 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
+ITEM_PIPELINES = ['stack.pipelines.MongoDBPipeline', ]
+MONGODB_SERVER = "localhost"
+MONGODB_PORT = 27017
+MONGODB_DB = "steamstore"
+MONGODB_COLLECTION = "gamestats"
+
+
+
 BOT_NAME = 'steamscraper'
 
 SPIDER_MODULES = ['steamscraper.spiders']
