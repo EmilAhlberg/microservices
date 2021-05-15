@@ -1,4 +1,6 @@
 import scrapy
+from steamscraper.items import SteamTopListItem
+
 
 class SteamSpider(scrapy.Spider):
     name = "steam"
@@ -17,7 +19,16 @@ class SteamSpider(scrapy.Spider):
         peakPlayers   = detailStats.xpath('//*[@class="player_count_row"]/td[2]/span/text()')
         gameTitle   = detailStats.xpath('//*[@class="player_count_row"]/td/a/text()')
 
+
         for rank, (cp, pp, gt) in enumerate(zip(currentPlayers, peakPlayers, gameTitle)):
+            item = SteamTopListItem()
+            item['listRank'] = rank
+            item['currentUsers'] = cp.get()
+            item['dailyPeakUsers'] = pp.get()
+            item['gameTitle'] = gt.get()
+            item['timestamp'] = 0
+            print(item)
+            yield item
             print(rank+1, cp.get(), pp.get(), gt.get())
 
         """

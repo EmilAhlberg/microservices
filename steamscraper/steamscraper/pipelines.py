@@ -5,9 +5,30 @@
 
 
 # useful for handling different item types with a single interface
+import pymongo
+import logging
 from itemadapter import ItemAdapter
-
+from scrapy.utils.project import get_project_settings
 
 class SteamscraperPipeline:
+    def __init__(self):
+        settings = get_project_settings()
+        print(settings)
+        connection = pymongo.MongoClient(
+            settings['MONGODB_SERVER'],
+            settings['MONGODB_PORT']
+        )
+        db = connection[settings['MONGODB_DB']]
+        self.collection = db[settings['MONGODB_COLLECTION']]
+
+
     def process_item(self, item, spider):
+        valid = True
+        for data in item:
+            if not data:
+                valid = False
+                raise DropItem("Missing {0}!".format(data))
+        if valid:
+            self.collection.insert(dict(item))
+            logging.debug("Steam scraped item added to MongoDB database!")
         return item
