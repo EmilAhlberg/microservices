@@ -6,14 +6,15 @@
 #     https://docs.scrapy.org/en/latest/topics/settings.html
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
+import os
 
 ITEM_PIPELINES = {'steamscraper.pipelines.SteamscraperPipeline': 300,}
-MONGODB_SERVER = "localhost"
-MONGODB_PORT = 27017
+MONGODB_SERVER = os.getenv('STEAM_MONGODB_HOST')
+MONGODB_PORT = int(os.getenv('STEAM_MONGODB_PORT'))
 MONGODB_DB = "steamstore"
 
-MONGODB_COLLECTION = "gamestats"
-
+MONGODB_STEAMDATA_COLLECTION = "steamdata"
+MONGODB_GAME_COLLECTION = "game"
 
 BOT_NAME = 'steamscraper'
 
@@ -39,7 +40,7 @@ ROBOTSTXT_OBEY = True
 #CONCURRENT_REQUESTS_PER_IP = 16
 
 # Disable cookies (enabled by default)
-#COOKIES_ENABLED = False
+COOKIES_ENABLED = True
 
 # Disable Telnet Console (enabled by default)
 #TELNETCONSOLE_ENABLED = False
