@@ -59,6 +59,6 @@ class SteamscraperPipeline:
             self.gamedata_collection.insert(dict(steamTopListItem))
             # insert as a subset of latest data, on 'game'
             self.game_collection.find_one_and_update({'gameTitle': steamTopListItem['gameTitle']},
-                {'$push': {'steamData': {'$each': [dict(steamTopListItem)], '$slice': -100}}})
+                {'$push': {'steamData': {'$each': [dict(steamTopListItem)], '$slice': -100}}}) #subset pattern of 100 samples
             logging.debug("Steam scraped item added to MongoDB database!")
         return item
