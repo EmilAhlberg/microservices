@@ -7,7 +7,6 @@ import (
 	"github.com/gorilla/mux"
 )
 
-// Retrieves all persisted TodoNotes
 func fetchDocumenHandler(w http.ResponseWriter, r *http.Request) {
 	payload := getAllDocuments()
 	json.NewEncoder(w).Encode(payload)
@@ -16,6 +15,6 @@ func fetchDocumenHandler(w http.ResponseWriter, r *http.Request) {
 // Route declaration
 func Router() *mux.Router {
 	r := mux.NewRouter()
-	r.HandleFunc("/todoItems", fetchDocumenHandler).Methods("GET")
+	r.HandleFunc("/gameData", fetchDocumenHandler).Methods("GET")
 	return r
 }

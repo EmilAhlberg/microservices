@@ -16,16 +16,23 @@ import (
 var client *mongo.Client
 
 type GameStat struct {
+	ID        primitive.ObjectID `bson:"_id"`
+	Developer string
+	GameTitle string
+	Publisher string
+	SteamData []SteamData
+}
+
+type SteamData struct {
 	ID             primitive.ObjectID `bson:"_id"`
 	CurrentUsers   string
 	DailyPeakUsers string
-	GameTitle      string
 	ListRank       int
-	Timestamp      int
+	Timestamp      primitive.DateTime
 }
 
 func getAllDocuments() []GameStat {
-	collection := client.Database("steamstore").Collection("gamestats")
+	collection := client.Database("steamstore").Collection("game")
 
 	cur, err := collection.Find(context.TODO(), bson.D{{}})
 	if err != nil {
