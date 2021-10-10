@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"os"
 
 	"context"
 	"fmt"
@@ -58,9 +59,7 @@ func getAllDocuments() []GameStat {
 func Connect() *mongo.Client {
 	// Set client options
 	clientOptions := options.Client().ApplyURI(
-		//TODO: env configuration
-		//fmt.Sprintf("mongodb://%s:%s", os.Getenv("MONGODB_HOST"), os.Getenv("MONGODB_PORT")))
-		fmt.Sprintf("mongodb://%s:%s", "localhost", "27017"))
+		fmt.Sprintf("mongodb://%s:%s", os.Getenv("MONGODB_HOST"), os.Getenv("MONGODB_PORT")))
 
 	// Connect to MongoDB
 	client, err := mongo.Connect(context.TODO(), clientOptions)

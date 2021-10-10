@@ -2,16 +2,30 @@ version: "3.8"
 services:
   mongodb:
     image : mongo
+    hostname: mongodb
     container_name: mongodb
     environment:
     - PUID=1000
     - PGID=1000
     volumes:
-    - /home/barry/mongodb/database:/data/db
+    - ./database:/data/db
     ports:
     - 27017:27017
     expose:
     - 27017
+    restart: unless-stopped
+  steamapi:
+    image: steamapi
+    container_name: steamapi
+    environment:
+    - MONGODB_HOST=mongodb
+    - MONGODB_PORT=27017
+    depends_on:
+      - mongodb
+    ports:
+    - 9100:9100
+    expose:
+    - 9100
     restart: unless-stopped
   steamscraper:
     image: steamscraper
