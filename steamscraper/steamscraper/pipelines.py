@@ -37,7 +37,7 @@ class SteamscraperPipeline:
                 raise DropItem("Missing {0}!".format(data))
         if valid:
 
-            print(item)
+            logging.debug(item)
 
             if not self.game_collection.find_one({'gameTitle': item['gameTitle']}):
                 #subset pattern, add entry if non-existing
