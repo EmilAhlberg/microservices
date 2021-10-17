@@ -24,14 +24,18 @@ services:
       - mongodb
     ports:
     - 9100:9100
-    expose:
-    - 9100
+    #expose:
+    #- 9100
     restart: unless-stopped
   steamscraper:
-    image: steamscraper
-    container_name: steamscraper
+    image: scraper_api
+    container_name: scraper_api
     environment:
     - STEAM_MONGODB_HOST=mongodb
     - STEAM_MONGODB_PORT=27017
+    - FLASK_APP=ScraperAPI.py
+    - FLASK_ENV=development # change when deployed to prod
     depends_on:
       - mongodb
+    ports: 
+      - 9080:9080

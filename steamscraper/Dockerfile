@@ -14,4 +14,4 @@ RUN pip3 install --no-cache-dir -r requirements.txt
 COPY . .
 
 # run crawler on launch
-CMD [ "python3", "./run_scraper.py" ]
+CMD [ "scrapyrt" ]

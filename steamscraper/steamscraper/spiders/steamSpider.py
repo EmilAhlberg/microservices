@@ -3,7 +3,7 @@ import datetime
 from steamscraper.items import SteamTopListItem, GameRawDataItem
 
 class SteamSpider(scrapy.Spider):
-    name = "steam"
+    name = "steamspider"
 
     def parse (self, response):
         detailStats = response.xpath('//*[@id="detailStats"]')
